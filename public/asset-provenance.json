@@ -13,11 +13,15 @@
     },
     {
       "path": "/thumbnail.png",
-      "origin": "original-procedural",
-      "creator": "Manse",
-      "createdAt": "2026-07-21T14:34:13.019Z",
+      "origin": "generated",
+      "tool": "OpenAI image generation (built-in image_gen.imagegen tool); center-cropped and resized with macOS sips",
+      "model": "Not reported by the built-in image_gen response",
+      "prompt": "Use case: stylized-concept\nAsset type: 16:9 hero image for a family-friendly browser motion game\nPrimary request: An original, magical night museum scene where playful marble statues come alive to dance, then freeze when a museum guard's flashlight sweeps through the gallery.",
+      "generatedAt": "2026-07-21T18:57:52Z",
+      "derivedFrom": "/packs/museum-statues/assets/images/night-museum-hero.png",
+      "transformation": "Center-cropped from 1672x941 to 1672x878 and resized to 1200x630.",
       "license": "MIT",
-      "sha256": "c458052c3dbf05f85536f886ad1de83c27829269205e5656e9f57bf5b6b376f4"
+      "sha256": "372981096e8e34b97c66c08b3b9786ba995f58a54fb802f16f95104e91423892"
     },
     {
       "path": "/packs/museum-statues/assets/audio/success.wav",

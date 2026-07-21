@@ -1,10 +1,21 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { createMansePlayer, type MansePlayer, type PlayerSnapshot, type ProviderKind } from "@manse/runtime-web";
+import { createDefaultRenderer, createMansePlayer, type MansePlayer, type PlayerSnapshot, type ProviderKind, type RendererFactory } from "@manse/runtime-web";
 import { GAME_CONFIG, type SupportedLocale, UI_COPY } from "./game-config";
 
 const PACK_URL = `/packs/${GAME_CONFIG.slug}/manse.pack.json`;
+const THEMED_RENDERER: RendererFactory = (options) => {
+  const renderer = createDefaultRenderer(options);
+  Object.assign(renderer.element.style, {
+    backgroundImage: "linear-gradient(rgba(2,12,35,.04), rgba(2,10,29,.38)), url('/packs/museum-statues/assets/images/night-museum-hero.png')",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+  });
+  const cameraSurface = renderer.element.firstElementChild as HTMLElement | null;
+  if (cameraSurface?.tagName === "CANVAS") cameraSurface.style.opacity = "0.38";
+  return renderer;
+};
 const EMPTY: Pick<PlayerSnapshot, "phase" | "provider" | "tier" | "renderer" | "cameraActive" | "targetProgress" | "caption"> = {
   phase: "idle",
   provider: "simulated",
@@ -49,6 +60,7 @@ export function GameClient() {
     const player = createMansePlayer({
       container,
       provider,
+      rendererFactory: THEMED_RENDERER,
       locale,
       captions: true,
       reducedStimulation: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
