@@ -66,7 +66,7 @@
     "attribution": "Manse — 박물관 조각상 (Museum Statues)"
   },
   "contentProvenance": {
-    "hasGeneratedAssets": false,
+    "hasGeneratedAssets": true,
     "hasThirdPartyAssets": true,
     "provenanceUrl": "https://museum-statues.ran584000.chatgpt.site/asset-provenance.json"
   },

@@ -13,12 +13,15 @@ async function render(pathname = "/") {
   );
 }
 
-test("server-renders the anonymous game start experience", async () => {
+test("server-renders the anonymous localized game start experience", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Play with pointer/);
-  assert.match(html, /Camera stays on this device/);
+  assert.match(html, /포인터로 플레이/);
+  assert.match(html, /카메라는 이 기기에서만 처리돼요/);
+  assert.match(html, />KO<\/button>/);
+  assert.match(html, />EN<\/button>/);
+  assert.match(html, /night-museum-hero\.png/);
   assert.match(html, /https:\/\/github\.com\/ahndohun\/manse-game-museum-statues/);
   assert.doesNotMatch(html, /replace-me/);
   assert.doesNotMatch(html, /signin-with-chatgpt|<iframe\b|<form\b/i);

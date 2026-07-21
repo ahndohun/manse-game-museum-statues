@@ -5,18 +5,27 @@
     "title": [
       {
         "locale": "ko",
-        "text": "박물관 조각상 (Museum Statues)"
+        "text": "박물관 조각상"
+      },
+      {
+        "locale": "en",
+        "text": "Museum Statues"
       }
     ],
     "summary": [
       {
         "locale": "ko",
-        "text": "Freeze like a statue when the guard's flashlight sweeps past, dance when it is gone."
+        "text": "경비원의 손전등이 지나갈 때는 조각상처럼 멈추고, 불빛이 사라지면 춤춰요."
+      },
+      {
+        "locale": "en",
+        "text": "Freeze like a statue when the guard's flashlight sweeps past, then dance when it is gone."
       }
     ],
     "theme": "A night museum where statues come alive — freeze while the guard's flashlight sweeps past, dance when it is gone",
     "locales": [
-      "ko"
+      "ko",
+      "en"
     ],
     "ageBands": [
       "2-3",
@@ -44,11 +53,15 @@
       "name": [
         {
           "locale": "ko",
-          "text": "Guide"
+          "text": "조각상 안내인"
+        },
+        {
+          "locale": "en",
+          "text": "Statue Guide"
         }
       ],
       "artAssetId": null,
-      "description": "A neutral runtime guide rendered without a character asset."
+      "description": "밤의 박물관 놀이를 안내하는 친절한 목소리 / A friendly voice guiding the night-museum game."
     }
   ],
   "entrySceneId": "welcome",
@@ -60,6 +73,11 @@
         "items": [
           {
             "locale": "ko",
+            "text": "쉿! 박물관 경비원이 순찰하고 있어요. 조각상은 움직이면 안 돼요!",
+            "audioAssetId": null
+          },
+          {
+            "locale": "en",
             "text": "Shh! The museum guard is making rounds. Statues must not move!",
             "audioAssetId": null
           }
@@ -69,7 +87,7 @@
       "demo": null,
       "challenge": null,
       "learning": null,
-      "artAssetId": null,
+      "artAssetId": "night-museum-hero",
       "energy": "calm",
       "terminal": false,
       "transitions": [
@@ -87,6 +105,11 @@
         "items": [
           {
             "locale": "ko",
+            "text": "손전등이 비추면 조각상처럼 멈추세요. 불빛이 사라지면 춤춰요!",
+            "audioAssetId": null
+          },
+          {
+            "locale": "en",
             "text": "Freeze like a statue while the flashlight is on you. Dance when it goes away!",
             "audioAssetId": null
           }
@@ -109,7 +132,7 @@
         "kind": "none",
         "payload": []
       },
-      "artAssetId": null,
+      "artAssetId": "night-museum-hero",
       "energy": "medium",
       "terminal": false,
       "transitions": [
@@ -139,7 +162,12 @@
         "items": [
           {
             "locale": "ko",
-            "text": "Freeze like a statue while the flashlight is on you. Dance when it goes away!",
+            "text": "다시 한번 해 볼까요? 불빛이 오면 멈추고, 지나가면 자유롭게 춤춰요!",
+            "audioAssetId": null
+          },
+          {
+            "locale": "en",
+            "text": "Let's try once more. Freeze when the light arrives, then dance freely when it passes!",
             "audioAssetId": null
           }
         ],
@@ -161,7 +189,7 @@
         "kind": "none",
         "payload": []
       },
-      "artAssetId": null,
+      "artAssetId": "night-museum-hero",
       "energy": "medium",
       "terminal": false,
       "transitions": [
@@ -184,6 +212,11 @@
         "items": [
           {
             "locale": "ko",
+            "text": "경비원은 움직이는 모습을 하나도 못 봤어요. 박물관 최고의 조각상이네요!",
+            "audioAssetId": null
+          },
+          {
+            "locale": "en",
             "text": "The guard never saw you move. You are the best statue in the museum!",
             "audioAssetId": null
           }
@@ -193,7 +226,7 @@
       "demo": null,
       "challenge": null,
       "learning": null,
-      "artAssetId": null,
+      "artAssetId": "night-museum-hero",
       "energy": "calm",
       "terminal": true,
       "transitions": []
@@ -208,7 +241,36 @@
     "maxHighEnergyMs": 60000
   },
   "assets": {
-    "images": [],
+    "images": [
+      {
+        "id": "night-museum-hero",
+        "path": "assets/images/night-museum-hero.png",
+        "mediaType": "image/png",
+        "alt": [
+          {
+            "locale": "ko",
+            "text": "달빛이 비치는 밤의 박물관에서 대리석 조각상들이 춤추고 경비원의 손전등이 바닥을 비추는 모습"
+          },
+          {
+            "locale": "en",
+            "text": "Marble statues dancing in a moonlit museum as a guard's flashlight sweeps across the floor"
+          }
+        ],
+        "license": {
+          "spdxId": "MIT",
+          "name": "MIT License",
+          "url": "https://spdx.org/licenses/MIT.html",
+          "attribution": "Manse — Museum Statues generated hero; SHA-256: 417b48ca971c30eba1b3d71bd32ca150e6f8e22674e12fdab049d691419f4b27"
+        },
+        "provenance": {
+          "kind": "generated",
+          "tool": "OpenAI image generation (built-in image_gen.imagegen tool)",
+          "model": "Not reported by the built-in image_gen response",
+          "prompt": "Use case: stylized-concept\nAsset type: 16:9 hero image for a family-friendly browser motion game\nPrimary request: An original, magical night museum scene where playful marble statues come alive to dance, then freeze when a museum guard's flashlight sweeps through the gallery.\nScene/backdrop: Grand but welcoming museum gallery after closing, indigo-blue night visible through high windows, marble plinths and archways, subtle museum display details.\nSubject: A small ensemble of whimsical, fully clothed, non-photorealistic marble statues caught in expressive freeze poses; a warm cone of flashlight crosses the floor, with the guard only suggested as a distant friendly silhouette.\nStyle/medium: Premium storybook-meets-editorial digital illustration, painterly 3D depth, soft sculptural forms, suitable for children ages 3–7 without looking babyish.\nComposition/framing: Wide cinematic 16:9 establishing shot, clear central tableau, strong depth, edge-safe crop, no UI or captions baked into the art.\nLighting/mood: Moonlit indigo shadows, warm brass-gold museum lamps and flashlight, ivory marble highlights; mysterious but cozy, joyful and non-scary.\nColor palette: Deep indigo and midnight blue, warm ivory marble, restrained brass and antique gold accents; high readable contrast.\nMaterials/textures: Fine marble veining, brushed brass, polished stone floor with subtle reflections, painterly atmosphere.\nConstraints: Original characters only; no children or real people; no recognizable copyrighted characters; no logos; no trademarks; no text; no letters; no numbers; no signage; no watermark; no deceptive UI; no danger; no running or unsafe movement; fully clothed statues; family friendly.\nAvoid: Horror, threatening guard, dark illegible faces, photorealistic children, weapons, clutter, neon colors, lime green, coral red, overly cute stock-vector style.",
+          "generatedAt": "2026-07-21T18:57:52Z"
+        }
+      }
+    ],
     "audio": [
       {
         "id": "success-tone",
