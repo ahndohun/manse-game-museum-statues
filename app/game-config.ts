@@ -1,1 +1,1 @@
-export const GAME_CONFIG = {"slug":"museum-statues","title":"박물관 조각상 (Museum Statues)","summary":"Freeze like a statue when the guard's flashlight sweeps past, dance when it is gone.","creator":"Manse","sourceUrl":"https://github.com/replace-me/museum-statues","locale":"ko"} as const;
+export const GAME_CONFIG = {"slug":"museum-statues","title":"박물관 조각상 (Museum Statues)","summary":"Freeze like a statue when the guard's flashlight sweeps past, dance when it is gone.","creator":"Manse","sourceUrl":"https://github.com/ahndohun/manse-game-museum-statues","locale":"ko"} as const;
