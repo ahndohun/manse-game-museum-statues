@@ -5,22 +5,31 @@
   "title": [
     {
       "locale": "ko",
-      "text": "박물관 조각상 (Museum Statues)"
+      "text": "박물관 조각상"
+    },
+    {
+      "locale": "en",
+      "text": "Museum Statues"
     }
   ],
   "summary": [
     {
       "locale": "ko",
+      "text": "경비원의 손전등이 지나갈 때는 조각상처럼 멈추고, 사라지면 춤추세요."
+    },
+    {
+      "locale": "en",
       "text": "Freeze like a statue when the guard's flashlight sweeps past, dance when it is gone."
     }
   ],
   "creator": "Manse",
   "energy": "moderate",
-  "gameUrl": "https://museum-statues.example.invalid/",
+  "gameUrl": "https://museum-statues.ran584000.chatgpt.site/",
   "sourceUrl": "https://github.com/ahndohun/manse-game-museum-statues",
   "engineVersion": "0.2.0",
   "locales": [
-    "ko"
+    "ko",
+    "en"
   ],
   "ageRange": {
     "min": 3,
@@ -37,12 +46,16 @@
     "audioCues": true
   },
   "thumbnail": {
-    "url": "https://museum-statues.example.invalid/thumbnail.png",
+    "url": "https://museum-statues.ran584000.chatgpt.site/thumbnail.png",
     "mediaType": "image/png",
     "alt": [
       {
         "locale": "ko",
-        "text": "Abstract motion-game artwork for 박물관 조각상 (Museum Statues)"
+        "text": "박물관 조각상 모션 게임 아트워크"
+      },
+      {
+        "locale": "en",
+        "text": "Motion-game artwork for Museum Statues"
       }
     ]
   },
@@ -55,7 +68,7 @@
   "contentProvenance": {
     "hasGeneratedAssets": false,
     "hasThirdPartyAssets": true,
-    "provenanceUrl": "https://museum-statues.example.invalid/asset-provenance.json"
+    "provenanceUrl": "https://museum-statues.ran584000.chatgpt.site/asset-provenance.json"
   },
   "permissions": {
     "camera": true,
