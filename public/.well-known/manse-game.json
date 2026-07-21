@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "id": "manse.museum-statues",
+  "slug": "museum-statues",
+  "title": [
+    {
+      "locale": "ko",
+      "text": "박물관 조각상 (Museum Statues)"
+    }
+  ],
+  "summary": [
+    {
+      "locale": "ko",
+      "text": "Freeze like a statue when the guard's flashlight sweeps past, dance when it is gone."
+    }
+  ],
+  "creator": "Manse",
+  "energy": "moderate",
+  "gameUrl": "https://museum-statues.example.invalid/",
+  "sourceUrl": "https://github.com/replace-me/museum-statues",
+  "engineVersion": "0.2.0",
+  "locales": [
+    "ko"
+  ],
+  "ageRange": {
+    "min": 3,
+    "max": 7
+  },
+  "movementTags": [
+    "freeze"
+  ],
+  "accessibility": {
+    "captions": true,
+    "seatedMode": true,
+    "highContrast": true,
+    "reducedStimulation": true,
+    "audioCues": true
+  },
+  "thumbnail": {
+    "url": "https://museum-statues.example.invalid/thumbnail.png",
+    "mediaType": "image/png",
+    "alt": [
+      {
+        "locale": "ko",
+        "text": "Abstract motion-game artwork for 박물관 조각상 (Museum Statues)"
+      }
+    ]
+  },
+  "license": {
+    "spdxId": "MIT",
+    "name": "MIT License",
+    "url": "https://spdx.org/licenses/MIT.html",
+    "attribution": "Manse — 박물관 조각상 (Museum Statues)"
+  },
+  "contentProvenance": {
+    "hasGeneratedAssets": false,
+    "hasThirdPartyAssets": true,
+    "provenanceUrl": "https://museum-statues.example.invalid/asset-provenance.json"
+  },
+  "permissions": {
+    "camera": true,
+    "deviceLocalStorage": true
+  }
+}

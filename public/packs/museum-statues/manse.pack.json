@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 2,
+  "meta": {
+    "id": "manse.museum-statues",
+    "title": [
+      {
+        "locale": "ko",
+        "text": "박물관 조각상 (Museum Statues)"
+      }
+    ],
+    "summary": [
+      {
+        "locale": "ko",
+        "text": "Freeze like a statue when the guard's flashlight sweeps past, dance when it is gone."
+      }
+    ],
+    "theme": "A night museum where statues come alive — freeze while the guard's flashlight sweeps past, dance when it is gone",
+    "locales": [
+      "ko"
+    ],
+    "ageBands": [
+      "2-3",
+      "4-5",
+      "6-7"
+    ],
+    "estMinutes": 3,
+    "engine": {
+      "minimumVersion": "0.2.0",
+      "maximumVersion": "0.2.0"
+    },
+    "compiler": {
+      "model": "GPT-5.6 via Codex",
+      "reasoningEffort": "creator-session",
+      "generatedAt": "2026-07-21T14:34:13.019Z"
+    }
+  },
+  "permissions": {
+    "camera": true,
+    "deviceLocalStorage": true
+  },
+  "cast": [
+    {
+      "id": "guide",
+      "name": [
+        {
+          "locale": "ko",
+          "text": "Guide"
+        }
+      ],
+      "artAssetId": null,
+      "description": "A neutral runtime guide rendered without a character asset."
+    }
+  ],
+  "entrySceneId": "welcome",
+  "scenes": [
+    {
+      "id": "welcome",
+      "kind": "story",
+      "narration": {
+        "items": [
+          {
+            "locale": "ko",
+            "text": "Shh! The museum guard is making rounds. Statues must not move!",
+            "audioAssetId": null
+          }
+        ],
+        "captionDefaultOn": true
+      },
+      "demo": null,
+      "challenge": null,
+      "learning": null,
+      "artAssetId": null,
+      "energy": "calm",
+      "terminal": false,
+      "transitions": [
+        {
+          "on": "always",
+          "to": "round-one",
+          "adapt": null
+        }
+      ]
+    },
+    {
+      "id": "round-one",
+      "kind": "challenge",
+      "narration": {
+        "items": [
+          {
+            "locale": "ko",
+            "text": "Freeze like a statue while the flashlight is on you. Dance when it goes away!",
+            "audioAssetId": null
+          }
+        ],
+        "captionDefaultOn": true
+      },
+      "demo": null,
+      "challenge": {
+        "type": "freeze",
+        "holdMs": 2500,
+        "motionThreshold": 0.04,
+        "graceMs": 400,
+        "rounds": 5,
+        "minVisibleJoints": 8,
+        "timeBudgetMs": 172000,
+        "successAudioId": "success-tone",
+        "encourageAudioId": "encourage-tone"
+      },
+      "learning": {
+        "kind": "none",
+        "payload": []
+      },
+      "artAssetId": null,
+      "energy": "medium",
+      "terminal": false,
+      "transitions": [
+        {
+          "on": "success",
+          "to": "complete",
+          "adapt": null
+        },
+        {
+          "on": "struggle",
+          "to": "round-two",
+          "adapt": {
+            "targetScaleMul": 1,
+            "dwellMsMul": 1,
+            "countDelta": 0,
+            "timeBudgetMul": 1.2,
+            "holdMsMul": 0.8,
+            "motionThresholdMul": 1.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "round-two",
+      "kind": "challenge",
+      "narration": {
+        "items": [
+          {
+            "locale": "ko",
+            "text": "Freeze like a statue while the flashlight is on you. Dance when it goes away!",
+            "audioAssetId": null
+          }
+        ],
+        "captionDefaultOn": true
+      },
+      "demo": null,
+      "challenge": {
+        "type": "freeze",
+        "holdMs": 2500,
+        "motionThreshold": 0.04,
+        "graceMs": 400,
+        "rounds": 5,
+        "minVisibleJoints": 8,
+        "timeBudgetMs": 172000,
+        "successAudioId": "success-tone",
+        "encourageAudioId": "encourage-tone"
+      },
+      "learning": {
+        "kind": "none",
+        "payload": []
+      },
+      "artAssetId": null,
+      "energy": "medium",
+      "terminal": false,
+      "transitions": [
+        {
+          "on": "success",
+          "to": "complete",
+          "adapt": null
+        },
+        {
+          "on": "struggle",
+          "to": "complete",
+          "adapt": null
+        }
+      ]
+    },
+    {
+      "id": "complete",
+      "kind": "celebration",
+      "narration": {
+        "items": [
+          {
+            "locale": "ko",
+            "text": "The guard never saw you move. You are the best statue in the museum!",
+            "audioAssetId": null
+          }
+        ],
+        "captionDefaultOn": true
+      },
+      "demo": null,
+      "challenge": null,
+      "learning": null,
+      "artAssetId": null,
+      "energy": "calm",
+      "terminal": true,
+      "transitions": []
+    }
+  ],
+  "adaptPolicy": {
+    "targetSuccessBand": [
+      0.65,
+      0.85
+    ],
+    "maxStruggleStreak": 2,
+    "maxHighEnergyMs": 60000
+  },
+  "assets": {
+    "images": [],
+    "audio": [
+      {
+        "id": "success-tone",
+        "path": "assets/audio/success.wav",
+        "mediaType": "audio/wav",
+        "locale": null,
+        "transcript": "",
+        "license": {
+          "spdxId": "MIT",
+          "name": "MIT License",
+          "url": "https://spdx.org/licenses/MIT.html",
+          "attribution": "Manse — 박물관 조각상 (Museum Statues)"
+        },
+        "provenance": {
+          "kind": "original",
+          "creator": "Manse",
+          "createdAt": "2026-07-21T14:34:13.019Z"
+        }
+      },
+      {
+        "id": "encourage-tone",
+        "path": "assets/audio/encourage.wav",
+        "mediaType": "audio/wav",
+        "locale": null,
+        "transcript": "",
+        "license": {
+          "spdxId": "MIT",
+          "name": "MIT License",
+          "url": "https://spdx.org/licenses/MIT.html",
+          "attribution": "Manse — 박물관 조각상 (Museum Statues)"
+        },
+        "provenance": {
+          "kind": "original",
+          "creator": "Manse",
+          "createdAt": "2026-07-21T14:34:13.019Z"
+        }
+      }
+    ],
+    "music": []
+  }
+}
