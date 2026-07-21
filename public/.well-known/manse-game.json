@@ -17,7 +17,7 @@
   "creator": "Manse",
   "energy": "moderate",
   "gameUrl": "https://museum-statues.example.invalid/",
-  "sourceUrl": "https://github.com/replace-me/museum-statues",
+  "sourceUrl": "https://github.com/ahndohun/manse-game-museum-statues",
   "engineVersion": "0.2.0",
   "locales": [
     "ko"
