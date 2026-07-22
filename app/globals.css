@@ -32,7 +32,7 @@ button:disabled { cursor: wait; opacity: .56; }
 button.secondary { border: 1px solid rgba(232, 223, 207, .38); background: rgba(9, 13, 36, .38); color: var(--marble); }
 a { color: var(--gold-bright); }
 main { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-.platform-shell { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 12px; border-bottom: 1px solid rgba(247, 245, 238, .15); background: var(--manse-black); color: var(--manse-white); box-shadow: 0 0 0 100vmax var(--manse-black); clip-path: inset(0 -100vmax); white-space: nowrap; }
+.platform-shell { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 0 12px; border-bottom: 1px solid rgba(247, 245, 238, .15); background: var(--manse-black); color: var(--manse-white); box-shadow: 0 0 0 100vmax var(--manse-black); clip-path: inset(0 -100vmax); white-space: nowrap; }
 .platform-identity, .platform-actions { min-width: 0; display: flex; align-items: center; }
 .platform-identity { gap: 12px; overflow: hidden; }
 .platform-actions { flex: 0 0 auto; gap: 10px; }

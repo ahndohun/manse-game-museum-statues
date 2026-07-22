@@ -35,7 +35,7 @@ test("server-renders the anonymous localized game start experience", async () =>
 
 test("platform shell keeps its compact mobile contract", async () => {
   const css = await readFile("app/globals.css", "utf8");
-  assert.match(css, /\.platform-shell\s*\{[^}]*min-height:\s*72px/s);
+  assert.match(css, /\.platform-shell\s*\{[^}]*min-height:\s*68px/s);
   assert.match(css, /@media \(max-width:\s*620px\)[\s\S]*\.platform-shell\s*\{[^}]*min-height:\s*64px/s);
   assert.match(css, /\.browse-games\s*\{[^}]*white-space:\s*nowrap/s);
   assert.match(css, /\.shell-divider, \.shell-game\s*\{\s*display:\s*none/s);
