@@ -8,6 +8,25 @@ export const GAME_CONFIG = {
   heroPath: "/packs/museum-statues/assets/images/night-museum-hero.png",
 } as const;
 
+/** Designer-owned presentation tuning for the code-native museum renderer. */
+export const MUSEUM_FEEL = {
+  beamSweepMs: 3_800,
+  reactionFlashMs: 720,
+  roundCelebrationMs: 900,
+  cameraOpacity: 0.48,
+  simulatedOpacity: 0.28,
+  palette: {
+    night: "#070b22",
+    indigo: "#111943",
+    marble: "#f0e7d5",
+    marbleShade: "#a9abc2",
+    gold: "#efc86d",
+    amber: "#ffdf91",
+    alert: "#ff8e79",
+    success: "#8be3c1",
+  },
+} as const;
+
 export type SupportedLocale = "ko" | "en";
 
 export const UI_COPY = {
@@ -36,6 +55,23 @@ export const UI_COPY = {
     runtimeReady: "런타임 준비됨",
     tier: "단계",
     errorGeneric: "게임을 시작하지 못했어요. 다시 시도하거나 포인터 모드를 선택해 주세요.",
+    renderer: {
+      wing: "달빛 전시관 04",
+      mission: "경비원의 눈을 피해 살아 움직이는 조각상이 되세요",
+      freeze: "꼼짝 마!",
+      freezeHint: "손전등이 비춰요 · 조각상 자세를 유지하세요",
+      holding: "완벽한 조각상",
+      holdingHint: "그대로 유지하면 전시 별을 얻어요",
+      dance: "지금 춤춰요!",
+      danceHint: "불빛이 사라졌어요 · 다음 순찰 전까지 움직여요",
+      reset: "앗, 움직였어요!",
+      resetHint: "괜찮아요 · 다시 조각상처럼 멈춰 보세요",
+      framing: "전신이 보이도록 한 걸음 조절해 주세요",
+      galleryStars: "전시 별",
+      guard: "경비 순찰",
+      complete: "박물관의 걸작!",
+      completeHint: "밤의 전시관이 당신의 멋진 조각상 자세에 박수를 보내요",
+    },
     footer: "Manse 제작. 오픈소스 Manse 엔진으로 만들었습니다. 움직임이 불편하면 언제든 멈추세요.",
     source: "소스 코드 보기",
   },
@@ -64,6 +100,23 @@ export const UI_COPY = {
     runtimeReady: "runtime ready",
     tier: "tier",
     errorGeneric: "The game could not start. Try again or choose pointer mode.",
+    renderer: {
+      wing: "MOONLIGHT WING 04",
+      mission: "Come alive without letting the night guard catch you",
+      freeze: "FREEZE!",
+      freezeHint: "The flashlight found you · hold your statue pose",
+      holding: "MASTERFUL STATUE",
+      holdingHint: "Stay still to earn a gallery star",
+      dance: "DANCE NOW!",
+      danceHint: "The beam is gone · move before the next patrol",
+      reset: "ALMOST CAUGHT!",
+      resetHint: "That is okay · settle back into your statue pose",
+      framing: "Adjust one step so your whole body is visible",
+      galleryStars: "GALLERY STARS",
+      guard: "GUARD PATROL",
+      complete: "MUSEUM MASTERPIECE!",
+      completeHint: "The whole night gallery applauds your brilliant statue poses",
+    },
     footer: "Created by Manse with the open-source Manse engine. Stop whenever movement feels uncomfortable.",
     source: "View source",
   },

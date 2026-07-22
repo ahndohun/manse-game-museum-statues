@@ -1,22 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { createDefaultRenderer, createMansePlayer, type MansePlayer, type PlayerSnapshot, type ProviderKind, type RendererFactory } from "@manse/runtime-web";
+import { createMansePlayer, type MansePlayer, type PlayerSnapshot, type ProviderKind } from "@manse/runtime-web";
 import { GAME_CONFIG, type SupportedLocale, UI_COPY } from "./game-config";
+import { createMuseumRendererFactory } from "./museum-renderer";
 
 const PACK_URL = `/packs/${GAME_CONFIG.slug}/manse.pack.json`;
-const THEMED_RENDERER: RendererFactory = (options) => {
-  const renderer = createDefaultRenderer(options);
-  Object.assign(renderer.element.style, {
-    backgroundImage: "linear-gradient(rgba(2,12,35,.04), rgba(2,10,29,.38)), url('/packs/museum-statues/assets/images/night-museum-hero.png')",
-    backgroundPosition: "center",
-    backgroundSize: "cover",
-  });
-  const cameraSurface = renderer.element.firstElementChild as HTMLElement | null;
-  if (cameraSurface?.tagName === "CANVAS") cameraSurface.style.opacity = "0.38";
-  return renderer;
-};
-const EMPTY: Pick<PlayerSnapshot, "phase" | "provider" | "tier" | "renderer" | "cameraActive" | "targetProgress" | "caption"> = {
+const EMPTY: Pick<PlayerSnapshot, "phase" | "provider" | "tier" | "renderer" | "cameraActive" | "targetProgress" | "caption" | "challenge"> = {
   phase: "idle",
   provider: "simulated",
   tier: "A",
@@ -24,6 +14,7 @@ const EMPTY: Pick<PlayerSnapshot, "phase" | "provider" | "tier" | "renderer" | "
   cameraActive: false,
   targetProgress: null,
   caption: null,
+  challenge: null,
 };
 
 function browserLocale(): SupportedLocale {
@@ -60,7 +51,7 @@ export function GameClient() {
     const player = createMansePlayer({
       container,
       provider,
-      rendererFactory: THEMED_RENDERER,
+      rendererFactory: createMuseumRendererFactory(locale),
       locale,
       captions: true,
       reducedStimulation: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
@@ -134,6 +125,20 @@ export function GameClient() {
   };
 
   const progress = snapshot.targetProgress;
+  const challenge = snapshot.challenge;
+  const instruction = challenge?.kind === "freeze"
+    ? challenge.phase === "cooldown"
+      ? copy.renderer.dance
+      : challenge.phase === "holding"
+        ? copy.renderer.holding
+        : challenge.phase === "done"
+          ? copy.renderer.complete
+          : copy.renderer.freeze
+    : null;
+  const progressLabel = challenge === null
+    ? progress === null ? "—" : `${progress.completed} / ${progress.total}`
+    : `${challenge.completedUnits} / ${challenge.totalUnits}`;
+  const liveMessage = [snapshot.caption, instruction].filter((part, index, all) => part !== null && all.indexOf(part) === index).join(" · ");
   const status = error !== null
     ? copy.statusAttention
     : busy
@@ -208,8 +213,8 @@ export function GameClient() {
           )}
         </div>
         <div className="player-footer" aria-live="polite">
-          <span>{error ?? snapshot.caption ?? copy.comfortableSpace}</span>
-          <strong>{progress === null ? "—" : `${progress.completed} / ${progress.total}`}</strong>
+          <span>{error ?? (liveMessage || copy.comfortableSpace)}</span>
+          <strong>{progressLabel}</strong>
         </div>
         {snapshot.phase !== "idle" && (
           <div className="restart-row">
