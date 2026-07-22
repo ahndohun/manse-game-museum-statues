@@ -10,11 +10,10 @@ export const GAME_CONFIG = {
 
 /** Designer-owned presentation tuning for the code-native museum renderer. */
 export const MUSEUM_FEEL = {
+  totalRounds: 5,
   beamSweepMs: 3_800,
   reactionFlashMs: 720,
   roundCelebrationMs: 900,
-  cameraOpacity: 0.48,
-  simulatedOpacity: 0.28,
   palette: {
     night: "#070b22",
     indigo: "#111943",
@@ -52,8 +51,6 @@ export const UI_COPY = {
     statusIdle: "플레이 방식을 골라 주세요",
     statusCamera: "카메라 영상은 기기 안에서만 처리돼요",
     statusSimulator: "포인터 모드 실행 중",
-    runtimeReady: "런타임 준비됨",
-    tier: "단계",
     errorGeneric: "게임을 시작하지 못했어요. 다시 시도하거나 포인터 모드를 선택해 주세요.",
     renderer: {
       wing: "달빛 전시관 04",
@@ -66,6 +63,8 @@ export const UI_COPY = {
       danceHint: "불빛이 사라졌어요 · 다음 순찰 전까지 움직여요",
       reset: "앗, 움직였어요!",
       resetHint: "괜찮아요 · 다시 조각상처럼 멈춰 보세요",
+      roundClear: "전시 별을 찾았어요!",
+      roundClearHint: "멋진 자세예요 · 다음 순찰이 오기 전에 춤춰요",
       framing: "전신이 보이도록 한 걸음 조절해 주세요",
       galleryStars: "전시 별",
       guard: "경비 순찰",
@@ -97,8 +96,6 @@ export const UI_COPY = {
     statusIdle: "Choose how to play",
     statusCamera: "Camera stays on this device",
     statusSimulator: "Pointer mode live",
-    runtimeReady: "runtime ready",
-    tier: "tier",
     errorGeneric: "The game could not start. Try again or choose pointer mode.",
     renderer: {
       wing: "MOONLIGHT WING 04",
@@ -111,6 +108,8 @@ export const UI_COPY = {
       danceHint: "The beam is gone · move before the next patrol",
       reset: "ALMOST CAUGHT!",
       resetHint: "That is okay · settle back into your statue pose",
+      roundClear: "GALLERY STAR EARNED!",
+      roundClearHint: "Brilliant pose · dance before the next patrol arrives",
       framing: "Adjust one step so your whole body is visible",
       galleryStars: "GALLERY STARS",
       guard: "GUARD PATROL",

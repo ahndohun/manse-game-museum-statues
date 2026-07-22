@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createMansePlayer, type MansePlayer, type PlayerSnapshot, type ProviderKind } from "@manse/runtime-web";
-import { GAME_CONFIG, type SupportedLocale, UI_COPY } from "./game-config";
+import { GAME_CONFIG, MUSEUM_FEEL, type SupportedLocale, UI_COPY } from "./game-config";
 import { createMuseumRendererFactory } from "./museum-renderer";
 
 const PACK_URL = `/packs/${GAME_CONFIG.slug}/manse.pack.json`;
@@ -32,10 +32,12 @@ export function GameClient() {
   const playerRef = useRef<MansePlayer | null>(null);
   const unsubscribeRef = useRef<(() => void) | null>(null);
   const runIdRef = useRef(0);
+  const progressBySceneRef = useRef(new Map<string, number>());
   const [locale, setLocale] = useState<SupportedLocale>(GAME_CONFIG.locale);
   const [snapshot, setSnapshot] = useState(EMPTY);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [missionProgress, setMissionProgress] = useState(0);
   const copy = UI_COPY[locale];
 
   const boot = useCallback(async (provider: ProviderKind) => {
@@ -58,6 +60,10 @@ export function GameClient() {
       onEvent: (event) => {
         if (runId !== runIdRef.current) return;
         if (event.type === "error") setError(localized.errorGeneric);
+        if (event.type === "challenge-progress") {
+          progressBySceneRef.current.set(event.sceneId, event.unit);
+          setMissionProgress([...progressBySceneRef.current.values()].reduce((total, value) => total + value, 0));
+        }
       },
     });
     playerRef.current = player;
@@ -91,6 +97,8 @@ export function GameClient() {
   }, [locale]);
 
   const start = (provider: ProviderKind) => {
+    progressBySceneRef.current.clear();
+    setMissionProgress(0);
     setBusy(true);
     setError(null);
     void boot(provider);
@@ -107,6 +115,8 @@ export function GameClient() {
     void (player?.destroy() ?? Promise.resolve()).finally(() => {
       if (runId !== runIdRef.current) return;
       setSnapshot(EMPTY);
+      progressBySceneRef.current.clear();
+      setMissionProgress(0);
       setError(null);
       setLocale(nextLocale);
       setBusy(false);
@@ -132,12 +142,12 @@ export function GameClient() {
       : challenge.phase === "holding"
         ? copy.renderer.holding
         : challenge.phase === "done"
-          ? copy.renderer.complete
+          ? copy.renderer.roundClear
           : copy.renderer.freeze
     : null;
-  const progressLabel = challenge === null
-    ? progress === null ? "—" : `${progress.completed} / ${progress.total}`
-    : `${challenge.completedUnits} / ${challenge.totalUnits}`;
+  const progressLabel = challenge?.kind === "freeze" || missionProgress > 0
+    ? `${missionProgress} / ${MUSEUM_FEEL.totalRounds}`
+    : progress === null ? "—" : `${progress.completed} / ${progress.total}`;
   const liveMessage = [snapshot.caption, instruction].filter((part, index, all) => part !== null && all.indexOf(part) === index).join(" · ");
   const status = error !== null
     ? copy.statusAttention
@@ -188,7 +198,7 @@ export function GameClient() {
       <section id="player" className="player-shell" aria-label={copy.playerLabel}>
         <div className="player-bar">
           <span><i className={error === null ? "status-dot" : "status-dot status-error"} aria-hidden="true" /> {status}</span>
-          <span>{snapshot.renderer ?? copy.runtimeReady} · {copy.tier} {snapshot.tier}</span>
+          <span>{copy.renderer.mission}</span>
         </div>
         <div
           className="stage"

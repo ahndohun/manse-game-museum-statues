@@ -40,6 +40,15 @@
       "sha256": "9d9fc8fa481dfb8bbefc91c38f393f2d24cc02e35bd4bea1068d4a70be429624"
     },
     {
+      "path": "/packs/museum-statues/assets/audio/masterpiece.wav",
+      "origin": "original-procedural",
+      "creator": "Manse",
+      "createdAt": "2026-07-22T01:08:00Z",
+      "generator": "scripts/generate-audio.mjs",
+      "license": "MIT",
+      "sha256": "540cee86cac4ce07573bebef9b531e53b0a792d33aad08a319cadf2c6fd03657"
+    },
+    {
       "path": "/models/pose_landmarker_lite.task",
       "origin": "third-party",
       "source": "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker_lite.task",

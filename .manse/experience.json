@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "status": "approved",
+  "identity": {
+    "fantasy": "Come alive as a moonlit museum statue, dance between patrols, and freeze before the friendly night guard's flashlight can catch you.",
+    "playerVerb": "Dance freely, then hold a dramatic whole-body statue pose while the flashlight searches the gallery.",
+    "targetMetaphor": "Five gallery stars restored by surviving three increasingly precise golden patrols."
+  },
+  "beats": [
+    {
+      "id": "round-one",
+      "purpose": "Learn the light-and-shadow rhythm with one forgiving freeze under the first blue patrol."
+    },
+    {
+      "id": "round-two",
+      "purpose": "Link two longer statue holds while dancing through the moonlit middle gallery."
+    },
+    {
+      "id": "round-three",
+      "purpose": "Resolve the exhibition with two precise golden-patrol poses and the masterpiece chime."
+    }
+  ],
+  "presenter": {
+    "source": "app/museum-renderer.ts",
+    "themedEntities": [
+      "code-painted moonlight museum gallery",
+      "full-strength mirrored local-camera stage",
+      "marble living-statue costume and laurel crown",
+      "pose-seeking guard flashlight and five exhibition plinths"
+    ],
+    "reactiveStates": [
+      "flashlight searching while the player must freeze",
+      "gold hold ring filling around a masterful statue pose",
+      "light-off dance window between patrols",
+      "warm almost-caught recovery flash",
+      "gallery-star burst and museum-masterpiece finale"
+    ],
+    "continuousFeedback": "The flashlight tracks the pose center, the hold ring fills continuously, the marble costume follows local landmarks, and five persistent plinth stars record every successful freeze.",
+    "scoreAndResolution": "A persistent bilingual five-star exhibition score spans three escalating patrol beats, then resolves in a dedicated Museum Masterpiece panel and original victory chime."
+  },
+  "qualityGates": {
+    "themedEntitiesInPlay": true,
+    "threeReactiveStates": true,
+    "continuousInputFeedback": true,
+    "authoredEscalation": true,
+    "scoreAndResolution": true,
+    "threeGameplaySounds": true,
+    "noDebugChrome": true,
+    "cameraSimulatorParity": true,
+    "reducedMotionVerified": true
+  },
+  "evidence": {
+    "gameplayScreenshot": "evidence/museum-statues-gameplay.png",
+    "completionScreenshot": "evidence/museum-statues-victory.png",
+    "playtestNotes": "evidence/playtest-notes.md"
+  }
+}

@@ -119,12 +119,12 @@
       "demo": null,
       "challenge": {
         "type": "freeze",
-        "holdMs": 2500,
-        "motionThreshold": 0.04,
-        "graceMs": 400,
-        "rounds": 5,
+        "holdMs": 700,
+        "motionThreshold": 0.045,
+        "graceMs": 420,
+        "rounds": 1,
         "minVisibleJoints": 8,
-        "timeBudgetMs": 172000,
+        "timeBudgetMs": 18000,
         "successAudioId": "success-tone",
         "encourageAudioId": "encourage-tone"
       },
@@ -138,7 +138,7 @@
       "transitions": [
         {
           "on": "success",
-          "to": "complete",
+          "to": "round-two",
           "adapt": null
         },
         {
@@ -148,9 +148,9 @@
             "targetScaleMul": 1,
             "dwellMsMul": 1,
             "countDelta": 0,
-            "timeBudgetMul": 1.2,
-            "holdMsMul": 0.8,
-            "motionThresholdMul": 1.3
+            "timeBudgetMul": 1.15,
+            "holdMsMul": 0.85,
+            "motionThresholdMul": 1.2
           }
         }
       ]
@@ -162,12 +162,12 @@
         "items": [
           {
             "locale": "ko",
-            "text": "다시 한번 해 볼까요? 불빛이 오면 멈추고, 지나가면 자유롭게 춤춰요!",
+            "text": "두 번의 순찰이 이어져요. 불빛이 오면 멈추고, 지나가면 자유롭게 춤춰요!",
             "audioAssetId": null
           },
           {
             "locale": "en",
-            "text": "Let's try once more. Freeze when the light arrives, then dance freely when it passes!",
+            "text": "Two patrols are coming. Freeze when the light arrives, then dance freely when it passes!",
             "audioAssetId": null
           }
         ],
@@ -176,13 +176,70 @@
       "demo": null,
       "challenge": {
         "type": "freeze",
-        "holdMs": 2500,
-        "motionThreshold": 0.04,
-        "graceMs": 400,
-        "rounds": 5,
+        "holdMs": 850,
+        "motionThreshold": 0.035,
+        "graceMs": 360,
+        "rounds": 2,
         "minVisibleJoints": 8,
-        "timeBudgetMs": 172000,
+        "timeBudgetMs": 24000,
         "successAudioId": "success-tone",
+        "encourageAudioId": "encourage-tone"
+      },
+      "learning": {
+        "kind": "none",
+        "payload": []
+      },
+      "artAssetId": "night-museum-hero",
+      "energy": "medium",
+      "terminal": false,
+      "transitions": [
+        {
+          "on": "success",
+          "to": "round-three",
+          "adapt": null
+        },
+        {
+          "on": "struggle",
+          "to": "round-three",
+          "adapt": {
+            "targetScaleMul": 1,
+            "dwellMsMul": 1,
+            "countDelta": 0,
+            "timeBudgetMul": 1.15,
+            "holdMsMul": 0.85,
+            "motionThresholdMul": 1.2
+          }
+        }
+      ]
+    },
+    {
+      "id": "round-three",
+      "kind": "challenge",
+      "narration": {
+        "items": [
+          {
+            "locale": "ko",
+            "text": "마지막 황금 순찰이에요. 가장 멋진 자세로 두 번 얼어붙어 박물관의 걸작이 되세요!",
+            "audioAssetId": null
+          },
+          {
+            "locale": "en",
+            "text": "The final golden patrol is here. Freeze twice in your finest pose to become the museum masterpiece!",
+            "audioAssetId": null
+          }
+        ],
+        "captionDefaultOn": true
+      },
+      "demo": null,
+      "challenge": {
+        "type": "freeze",
+        "holdMs": 1000,
+        "motionThreshold": 0.028,
+        "graceMs": 320,
+        "rounds": 2,
+        "minVisibleJoints": 10,
+        "timeBudgetMs": 28000,
+        "successAudioId": "masterpiece-tone",
         "encourageAudioId": "encourage-tone"
       },
       "learning": {
@@ -306,6 +363,24 @@
           "kind": "original",
           "creator": "Manse",
           "createdAt": "2026-07-21T14:34:13.019Z"
+        }
+      },
+      {
+        "id": "masterpiece-tone",
+        "path": "assets/audio/masterpiece.wav",
+        "mediaType": "audio/wav",
+        "locale": null,
+        "transcript": "",
+        "license": {
+          "spdxId": "MIT",
+          "name": "MIT License",
+          "url": "https://spdx.org/licenses/MIT.html",
+          "attribution": "Manse — Museum Statues original procedural victory chime"
+        },
+        "provenance": {
+          "kind": "original",
+          "creator": "Manse",
+          "createdAt": "2026-07-22T01:08:00Z"
         }
       }
     ],
