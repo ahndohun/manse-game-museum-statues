@@ -4,6 +4,7 @@ export const GAME_CONFIG = {
   summary: "경비원의 손전등이 지나갈 때는 조각상처럼 멈추고, 불빛이 사라지면 춤춰요.",
   creator: "Manse",
   sourceUrl: "https://github.com/ahndohun/manse-game-museum-statues",
+  showcaseUrl: "https://manse-showcase.ran584000.chatgpt.site",
   locale: "ko",
   heroPath: "/packs/museum-statues/assets/images/night-museum-hero.png",
 } as const;
@@ -30,6 +31,9 @@ export type SupportedLocale = "ko" | "en";
 
 export const UI_COPY = {
   ko: {
+    platformNavigation: "Manse 플랫폼 탐색",
+    manseHome: "Manse 쇼케이스 홈",
+    browseGames: "게임 둘러보기",
     languageLabel: "언어 선택",
     kicker: "독립형 Manse 움직임 게임",
     title: "박물관 조각상",
@@ -75,6 +79,9 @@ export const UI_COPY = {
     source: "소스 코드 보기",
   },
   en: {
+    platformNavigation: "Manse platform navigation",
+    manseHome: "Manse Showcase home",
+    browseGames: "Browse games",
     languageLabel: "Choose language",
     kicker: "Independent Manse motion game",
     title: "Museum Statues",

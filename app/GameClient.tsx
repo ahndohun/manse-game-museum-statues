@@ -147,7 +147,7 @@ export function GameClient() {
     : null;
   const progressLabel = challenge?.kind === "freeze" || missionProgress > 0
     ? `${missionProgress} / ${MUSEUM_FEEL.totalRounds}`
-    : progress === null ? "—" : `${progress.completed} / ${progress.total}`;
+    : progress === null ? `0 / ${MUSEUM_FEEL.totalRounds}` : `${progress.completed} / ${progress.total}`;
   const liveMessage = [snapshot.caption, instruction].filter((part, index, all) => part !== null && all.indexOf(part) === index).join(" · ");
   const status = error !== null
     ? copy.statusAttention
@@ -163,21 +163,34 @@ export function GameClient() {
 
   return (
     <main>
-      <nav className="utility-nav" aria-label={copy.languageLabel}>
-        <a className="manse-mark" href="#player">MANSE / 04</a>
-        <div className="locale-switcher" role="group" aria-label={copy.languageLabel}>
-          {(["ko", "en"] as const).map((option) => (
-            <button
-              type="button"
-              key={option}
-              className={locale === option ? "locale-button active" : "locale-button"}
-              aria-pressed={locale === option}
-              onClick={() => switchLocale(option)}
-              disabled={busy}
-            >
-              {option.toUpperCase()}
-            </button>
-          ))}
+      <nav className="platform-shell" aria-label={copy.platformNavigation}>
+        <div className="platform-identity">
+          <a className="manse-mark" href={GAME_CONFIG.showcaseUrl} aria-label={copy.manseHome}>
+            <span className="manse-spark" aria-hidden="true" />
+            <span>MANSE</span>
+          </a>
+          <span className="shell-divider" aria-hidden="true">/</span>
+          <span className="shell-game">{copy.title}</span>
+        </div>
+        <div className="platform-actions">
+          <div className="locale-switcher" role="group" aria-label={copy.languageLabel}>
+            {(["ko", "en"] as const).map((option) => (
+              <button
+                type="button"
+                key={option}
+                className={locale === option ? "locale-button active" : "locale-button"}
+                aria-pressed={locale === option}
+                onClick={() => switchLocale(option)}
+                disabled={busy}
+              >
+                {option.toUpperCase()}
+              </button>
+            ))}
+          </div>
+          <a className="browse-games" href={GAME_CONFIG.showcaseUrl}>
+            <span>{copy.browseGames}</span>
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </nav>
 

@@ -22,9 +22,23 @@ test("server-renders the anonymous localized game start experience", async () =>
   assert.match(html, />KO<\/button>/);
   assert.match(html, />EN<\/button>/);
   assert.match(html, /night-museum-hero\.png/);
+  assert.equal(
+    html.match(/href="https:\/\/manse-showcase\.ran584000\.chatgpt\.site"/g)?.length,
+    2,
+    "wordmark and Browse games must both return to the exact public Showcase",
+  );
+  assert.match(html, /게임 둘러보기/);
   assert.match(html, /https:\/\/github\.com\/ahndohun\/manse-game-museum-statues/);
   assert.doesNotMatch(html, /replace-me/);
   assert.doesNotMatch(html, /signin-with-chatgpt|<iframe\b|<form\b/i);
+});
+
+test("platform shell keeps its compact mobile contract", async () => {
+  const css = await readFile("app/globals.css", "utf8");
+  assert.match(css, /\.platform-shell\s*\{[^}]*min-height:\s*72px/s);
+  assert.match(css, /@media \(max-width:\s*620px\)[\s\S]*\.platform-shell\s*\{[^}]*min-height:\s*64px/s);
+  assert.match(css, /\.browse-games\s*\{[^}]*white-space:\s*nowrap/s);
+  assert.match(css, /\.shell-divider, \.shell-game\s*\{\s*display:\s*none/s);
 });
 
 test("build bundles the public contract and pose runtime", async () => {
