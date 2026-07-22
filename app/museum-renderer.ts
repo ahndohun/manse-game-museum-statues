@@ -33,6 +33,7 @@ class MuseumRenderer implements RuntimeRenderer {
   readonly element: HTMLDivElement;
   private readonly canvas: HTMLCanvasElement;
   private readonly context: CanvasRenderingContext2D;
+  private readonly heroImage: HTMLImageElement;
   private readonly sparkles: Sparkle[] = [];
   private previousPhase: ChallengeGuide["phase"] | null = null;
   private previousUnits = 0;
@@ -73,6 +74,9 @@ class MuseumRenderer implements RuntimeRenderer {
     const context = this.canvas.getContext("2d", { alpha: false });
     if (context === null) throw new Error("Canvas 2D is unavailable.");
     this.context = context;
+    this.heroImage = document.createElement("img");
+    this.heroImage.decoding = "async";
+    this.heroImage.src = "/packs/museum-statues/assets/images/night-museum-hero.png";
     this.element.append(this.canvas);
     options.container.append(this.element);
   }
@@ -82,7 +86,7 @@ class MuseumRenderer implements RuntimeRenderer {
     const size = resize(this.element, this.canvas, frame.tier);
     const { context } = this;
     context.setTransform(size.dpr, 0, 0, size.dpr, 0, 0);
-    drawStageBase(context, size, frame);
+    drawStageBase(context, size, frame, this.heroImage);
 
     const guide = frame.challenge?.kind === "freeze" ? frame.challenge : null;
     this.captureReactions(guide, frame.timestampMs, size);
@@ -183,13 +187,55 @@ function resize(element: HTMLElement, canvas: HTMLCanvasElement, tier: RuntimeRe
   return { width, height, dpr };
 }
 
-function drawStageBase(context: CanvasRenderingContext2D, size: Size, frame: RuntimeRenderFrame): void {
+function drawStageBase(
+  context: CanvasRenderingContext2D,
+  size: Size,
+  frame: RuntimeRenderFrame,
+  heroImage: HTMLImageElement,
+): void {
   if (frame.video !== null && frame.video.readyState >= 2) {
     drawVideoCover(context, frame.video, size, frame.mirror);
     drawCameraGrade(context, size);
+  } else if (heroImage.complete && heroImage.naturalWidth > 0) {
+    drawImageCover(context, heroImage, size);
+    drawSimulatorGrade(context, size);
   } else {
     drawPaintedGallery(context, size, frame.timestampMs, frame.reducedStimulation);
   }
+}
+
+function drawImageCover(
+  context: CanvasRenderingContext2D,
+  image: HTMLImageElement,
+  size: Size,
+): void {
+  const sourceWidth = Math.max(1, image.naturalWidth);
+  const sourceHeight = Math.max(1, image.naturalHeight);
+  const sourceRatio = sourceWidth / sourceHeight;
+  const targetRatio = size.width / size.height;
+  let sx = 0;
+  let sy = 0;
+  let sw = sourceWidth;
+  let sh = sourceHeight;
+  if (sourceRatio > targetRatio) {
+    sw = sourceHeight * targetRatio;
+    sx = (sourceWidth - sw) / 2;
+  } else {
+    sh = sourceWidth / targetRatio;
+    sy = (sourceHeight - sh) / 2;
+  }
+  context.drawImage(image, sx, sy, sw, sh, 0, 0, size.width, size.height);
+}
+
+function drawSimulatorGrade(context: CanvasRenderingContext2D, size: Size): void {
+  context.fillStyle = "rgba(9,12,42,.12)";
+  context.fillRect(0, 0, size.width, size.height);
+  const grade = context.createLinearGradient(0, 0, 0, size.height);
+  grade.addColorStop(0, "rgba(4,7,28,.06)");
+  grade.addColorStop(0.62, "rgba(4,7,28,.12)");
+  grade.addColorStop(1, "rgba(4,7,28,.38)");
+  context.fillStyle = grade;
+  context.fillRect(0, 0, size.width, size.height);
 }
 
 function drawVideoCover(
